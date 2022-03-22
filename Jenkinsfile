@@ -15,7 +15,17 @@ def build() {
     }
 
 }
+def runIntegrationTest() {
+    try {
+        withMaven(maven: 'Maven') {
+            sh 'mvn -Pprod clean install'
+        }
+    }
+    catch (err) {
+        errorMsg("ERROR: ${err.message}!")
+    }
 
+}
 def runSonarScan() {
     withSonarQubeEnv(credentialsId: 'Sonarqube') {
         withMaven(maven: 'Maven') {
@@ -45,6 +55,9 @@ node('master') {
             stage ("Build Application") {
                 build()
             }
+            stage ("Run integration tests") {
+                runIntegrationTest()
+            }            
             stage ("Generate Sonar Report") {
                 runSonarScan()
             }
