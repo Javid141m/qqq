@@ -5,13 +5,13 @@
 ### Compile
 
 ```
-./mvnw compile
+.\mvnw compile
 ```
 
 ### Run unit tests
 
 ```
-./mvnw test
+.\mvnw test
 ```
 
 Unit testing uses h2 in-memory database. This is done to speed up the unit testing phase.
@@ -19,7 +19,7 @@ Unit testing uses h2 in-memory database. This is done to speed up the unit testi
 ### Run integation test
 
 ```
-./mvnw -Pprod veriy
+.\mvnw -Pprod veriy
 ```
 
 Integration testing runs the same unit tests (at this point in time) but against Postgres database. The lifecycle of postgres database as a docker container is managed by maven.
@@ -27,17 +27,15 @@ Integration testing runs the same unit tests (at this point in time) but against
 ### Run application with H2
 
 ```
-./mvnw spring-boot:run
+.\mvnw spring-boot:run
 ```
 
 ### Run application with Postgres database
 
-There will be scenarios to test manually  against a postgres database. If there is already Postgres database running elsewhere then configure the *application-**prod**.properties* in *src/main/resources* directory. Properties to change are jdbc-url, username and password.
+configure the *application-**prod**.properties* in *src/main/resources* directory. Properties to change are jdbc-url, username and password.
 
 ### Start database
-
-If you want to bring up a fresh Postgres database server then you have two easy options using docker. 
-
+ 
 -  Using docker 
 ```
 docker run -d -p5432:5432 -ePOSTGRES_DB=attsw -ePOSTGRES_USER=attsw -ePOSTGRES_PASSWORD=attsw postgres:10
@@ -55,7 +53,7 @@ docker-compose up -d db
 ### Start the application
 
 ```
-./mvnw -Pprod spring-boot:run
+.\mvnw -Pprod spring-boot:run
 ```
 
 > Option *-Pprod* is configured in maven
