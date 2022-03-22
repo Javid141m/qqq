@@ -18,6 +18,7 @@ public class AttswExamApplication {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("!!!!");
 		SpringApplication.run(AttswExamApplication.class, args);
 	}
 
